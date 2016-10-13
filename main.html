@@ -143,6 +143,17 @@
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     }
+       
+       
+       // specify popup options 
+    var customOptions =
+        {
+        'maxWidth': '500',
+        'className' : 'custom'
+        }
+    
+      layer.bindPopup(layer.feature.properties.ProvName_e +'',customOptions)
+	        .openPopup();
 }
         
 
@@ -150,6 +161,7 @@
 function resetHighlight(e) {
     
     IWlayer.resetStyle(e.target);
+
 }
          
 
@@ -175,6 +187,10 @@ function showHome(){
     map.removeLayer(IWlayer);
     
 }
+         
+         
+
+
 </script>
 </body>
 </html>
