@@ -76,15 +76,19 @@ $.getJSON("Data/output.js", function(data) {
 				theme: "theme1",
 				culture: "es",
 				animationEnabled: true,
+                title:{
+        text: document.getElementById("Lable").value   
+      },
       axisY: {
+        title: yAxis
+      },
+      axisX: {
         title: xAxis
       },
-      
       theme: "theme2",
 				data: [
 				{
 					type: "column",
-                    showInLegend:true,
 					dataPoints: points
 				}
 				]
