@@ -18,6 +18,7 @@
 <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"/>
+<link href='//fonts.googleapis.com/css?family=Bungee Inline' rel='stylesheet'>
 
 <!-- Add your external js file here-->
 <script src="/functions/FILENAME.js"> </script>
@@ -27,6 +28,7 @@
 
 <link rel="stylesheet" href="leaflet-graphicscale-master/dist/Leaflet.GraphicScale.min.css" />
 <link href='http://fonts.googleapis.com/css?family=Italianno' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 </head>
 
 <body>
@@ -42,25 +44,61 @@
 <div class="container">
 
    <div class="box" id="main_box">
-   
+           <button  id="homeButton" onclick="showHome()"> <img style="height:17px;"src ="Images/home.png"/>  </button>
+           <button  id="homeButton" onclick="showHome()"> <img style="height:17px;"src ="Images/info.png"/>  </button>
+
         <ul id="IWButtContainer" >
           <li id="IWButtons" > <a  class="IWLink" href="#home">Natural </a>     </li>
           <li id="IWButtons" > <a  class="IWLink" href="#news">Human </a>       </li>
           <li id="IWButtons" > <a class="IWLink" href="#contact">Produced </a> </li>
         </ul>
-    
+    <div id= "main_button_container">
         <div id="main_box_content">
-           <div id="main_button_container">
-            <button  class="button" onclick="showDesal()"><img class="button" id="dropimage" src ="Images/drop.png"/></button>
-            
-            <p id="mainButLabel" ><br>Water</p>  
-            
-            <button  class="button" onclick="showIW()"><img class="button" id="dropimage" src ="Images/transfer.png"/></button>
            
-            <p id="mainButLabel"><br>Inclusive Wealth</p>
+   
+        
+ <table class="mainTable" >
+     <tr>
+         <th colspan="3">  <p id="mainHeaderLabel">Intelligent Systems</p></th>
+         
+     </tr>
+      <tr>
+        <td><button  class="button" onclick="showDesal() "><img class="button" id="image" src ="Images/env.png"/>   </button>
+        <p id="mainButLabel" ><br>Environmental Systems</p></td>
+        <td>            <button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/drop.png"/>   </button>
+            
+            <p id="mainButLabel" ><br>Water Management</p>  </td>
+        <td>            <button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/Energy.png"/>   </button>
+            
+            <p id="mainButLabel" ><br>Energy Planning</p> </td>
+      </tr>
+      <tr>
+        <td> <button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/Mobility.png"/>   </button>
+            
+            <p id="mainButLabel" ><br>Mobility Dynamics</p></td>
+        <td> <button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/Urban.png"/>   </button>
+            
+            <p id="mainButLabel" ><br>Urban Development</p>
+            </td>
+        <td>            <button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/Social.png"/>   </button>
+            
+            <p id="mainButLabel" ><br>Social Analyitics</p></td>
+      </tr>
+      <tr>
+        <td><button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/labor.png"/>   </button>
+            
+            <p id="mainButLabel" ><br>Labor Market</p></td>
+        <td>  <button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/Tech.png"/>   </button>
+            
+            <p id="mainButLabel" ><br>Technological Evolution</p></td>
+        <td>     <button  class="button" onclick="showIW()"><img class="button" id="image" src ="Images/ResourceAl.png"/></button>
            
-            </div>
-         <button  id="homeButton" onclick="showHome()"> Home </button>
+            <p id="mainButLabel"><br>Resource Allocation</p></td>
+      </tr>
+  </table>
+           
+           </div>
+            
 
         </div>
     
@@ -146,7 +184,7 @@
        
        
        // specify popup options 
-    var customOptions =
+var customOptions =
         {
         'maxWidth': '500',
         'className' : 'custom'
