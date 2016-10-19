@@ -1,14 +1,13 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
+
 <head>
-<meta charset="utf-8" />
-<script type="text/javascript" src="D3/d3.min.js"></script>
+    <script type="text/javascript" src="D3/d3.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
 <script type="text/javascript" src="D3/d3pie-master/d3pie/d3pie.min.js"></script>
 <script src="Leaflet/leaflet.js"> </script>
 <script src="/heatmap.js-master/build/heatmap.js"> </script>
-<script src="/heatmap.js-master/plugins/leaflet-heatmap.js"> </script>
 <script src="/leaflet-div-heatmap-master/src/leaflet-div-heatmap.js"> </script>
 <link rel="stylesheet" type="text/css" href="Style.css">
 <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
@@ -17,180 +16,116 @@
 <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="../../canvasjs.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"/>
-
-<!-- Add your external js file here-->
-<script src="/functions/FILENAME.js"> </script>
-<script src="/Data/region.js"> </script> 
-
-
-
-<link rel="stylesheet" href="leaflet-graphicscale-master/dist/Leaflet.GraphicScale.min.css" />
-<link href='http://fonts.googleapis.com/css?family=Italianno' rel='stylesheet' type='text/css'>
-</head>
-
-<body>
-<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
+	<script src="../../jquery.canvasjs.min.js"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js'></script>
 <script src="/leaflet-graphicscale-master/dist/Leaflet.GraphicScale.min.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
+    <script src="/functions/retrieveOutputFile.js"> </script>
+    <script src="/functions/PlotChar.js"> </script>
 
- <!-------------------------------------- HTML ------------------------------------------->
-<!--NAjat is here-->
- 
-<div class="container">
-
-   <div class="box" id="main_box">
-   
-        <ul id="IWButtContainer" >
-          <li id="IWButtons" > <a  class="IWLink" href="#home">Natural </a>     </li>
-          <li id="IWButtons" > <a  class="IWLink" href="#news">Human </a>       </li>
-          <li id="IWButtons" > <a class="IWLink" href="#contact">Produced </a> </li>
-        </ul>
     
-        <div id="main_box_content">
-           <div id="main_button_container">
-            <button  class="button" onclick="showDesal()"><img class="button" id="dropimage" src ="Images/drop.png"/></button>
-            
-            <p id="mainButLabel" ><br>Water</p>  
-            
-            <button  class="button" onclick="showIW()"><img class="button" id="dropimage" src ="Images/transfer.png"/></button>
-           
-            <p id="mainButLabel"><br>Inclusive Wealth</p>
-           
-            </div>
-         <button  id="homeButton" onclick="showHome()"> Home </button>
+	<script type="text/javascript">
+		/*window.onload = function () {
+			var chart = new CanvasJS.Chart("chartContainer", {
+				title: {
+					text: "Top Categories of New Year's Resolution"
+				},
+				exportFileName: "CanvasJS Chart",
+				exportEnabled: true,
+				animationEnabled: true,
+				legend: {
+					verticalAlign: "bottom",
+					horizontalAlign: "center"
+				},
+				data: [
+				{
+					type: "pie",
+					showInLegend: true,
+					toolTipContent: "{legendText}: <strong>{y}%</strong>",
+					indexLabel: "{label} {y}%",
+					dataPoints: [
+						{ y: 35, legendText: "Health", exploded: true, label: "Health" },
+						{ y: 20, legendText: "Finance", label: "Finance" },
+						{ y: 18, legendText: "Career", label: "Career" },
+						{ y: 15, legendText: "Education", label: "Education" },
+						{ y: 5, legendText: "Family", label: "Family" },
+						{ y: 7, legendText: "Real Estate", label: "Real Estate" }
+					]
+				}
+				]
+			});
+			chart.render();
+		}
+		*/
+       /* function DisBarChart () {
+			CanvasJS.addCultureInfo("es", {
+				decimalSeparator: ",",// Observe ToolTip Number Format
+				digitGroupSeparator: ".", // Observe axisY labels
+				days: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"]
 
-        </div>
-    
-    </div>
-    <!-- Map -->     
-    <div id="map" class ="map"> </div>
+			});
 
+			var chart = new CanvasJS.Chart("barchartContainer", {
+				theme: "theme1",
+				culture: "es",
+				axisX: {
+					valueFormatString: "DDDD"
+				},
+				// change to "theme1"
+				title: {
+					text: document.getElementById("Lable").value
+				},
+				data: [
+				{
+					type: "column",
+					dataPoints: [
+					//Note: month input is 0-11 in JavaScript - 05 is June
+					{ x: new Date(2013, 05, 3), y: 3275.6 },
+					{ x: new Date(2013, 05, 4), y: 5250.8 },
+					{ x: new Date(2013, 05, 5), y: 6255.3 },
+					{ x: new Date(2013, 05, 6), y: 8275.2 },
+					{ x: new Date(2013, 05, 7), y: 6378.1 },
+					{ x: new Date(2013, 05, 8), y: 5258.4 },
+					{ x: new Date(2013, 05, 9), y: 3514.8 }
+					]
+				}
+				]
+			});
 
-    </div>
-    
+			chart.render();
+		}
+	</script>
 
-      
-      
- <!-------------------------------------- HTML END ------------------------------------------>
-
-
-
-	 <script>
-    // Creating the map using mapbox
-    var map;
-    var token = L.mapbox.accessToken = 'pk.eyJ1IjoiYWxtYWhhIiwiYSI6ImM4M2YxY2U3ZDVhNTg3YjdkZWI0MDRkNmU5YzU5NWI4In0.5g65rHetoEtp1RqK8t2gsA';
-    var mapKey = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' +  token;
-    window.map = L.mapbox.map('map', 'mapbox.light', {zoomControl:false}).setView([21.2954, 55.6794],5);
-    //move the map left/right: [ up/down , right/left ] up less, left more.
-
-         
-    L.tileLayer(mapKey, {id: 'mapbox.light'}).addTo(map);
-
-  
-   //Jo
-   function showDesal(){   
-    document.getElementById("main_button_container").style.display='none';
-    map.setView([25.2954, 50.6794],7)}
- 
-  var IWlayer;  
-  function showIW(){
-     
-     
-     document.getElementById("IWButtContainer").style.display='block';
-    document.getElementById("main_button_container").style.display='none';
-     map.setView([21.2954, 55.6794],5);
-     
-
-    new L.Control.Zoom({ position: 'topright' }).addTo(map);
-    map._initPathRoot();
-         
-         
-         //najat
-         
-         function getColor(d) {
-    return "#000"; 
-          
-}
-         
-        function style(feature) {
-        return {
-        fillColor: getColor(feature.properties.Shape_Area),
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.7
-    };
-}
-
-         
-         
-         
-   function highlightFeature(e) {
-    var layer = e.target;
-
-    layer.setStyle({
-        weight: 2,
-        fillColor:'#333',
-        dashArray: '',
-        fillOpacity: 0.5
+	<script src="../../canvasjs.min.js"></script>
+	<title>CanvasJS Example</title>
+</head>
+<body>
+    <form action="">
+  Lable:<br>
+  <input type="text" id="Lable" name="firstname" value="insert bar chart lable"><br><br>
+        X Axis:<br>  
+        <select id="xAxis" style="width:130px;">
+            <option value="District"> </option>
+                  
+        </select><br>
+<br>  
+        Y Axis:<br>     
+        <select id="yAxis" style="width:130px;">
+            <option value="District"> </option>
+                  
+        </select>
         
-    });
+  <br>
+    </form><br>
+    <button id="dis" onclick="DisBarChart()"> Display</button>   
+    <div id="barchartContainer" style="height: 400px; width: 100%;"></div>
 
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    }
-       
-       
-       // specify popup options 
-    var customOptions =
-        {
-        'maxWidth': '500',
-        'className' : 'custom'
-        }
-    
-      layer.bindPopup(layer.feature.properties.ProvName_e +'',customOptions)
-	        .openPopup();
-}
-        
+	<div id="chartContainer" style="height: 400px; width: 100%;"></div>
 
-         
-function resetHighlight(e) {
-    
-    IWlayer.resetStyle(e.target);
-
-}
-         
-
-         
-function onEachFeature(feature, layer) {
-    layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight
-
-    });
-}
-
-IWlayer = L.geoJson(region, {
-    style: style,
-    onEachFeature: onEachFeature
-}).addTo(map);
-    }
-
-function showHome(){
-    document.getElementById("main_button_container").style.display='block';
-    document.getElementById("IWButtContainer").style.display='none';
-    map.setView([21.2954, 55.6794],5);
-    map.removeLayer(IWlayer);
-    
-}
-         
-         
-
-
-</script>
 </body>
+
 </html>
