@@ -19,10 +19,14 @@
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"/>
 <link href='//fonts.googleapis.com/css?family=Bungee Inline' rel='stylesheet'>
+	<script src="../../canvasjs.min.js"></script>
 
 <!-- Add your external js file here-->
 <script src="/functions/FILENAME.js"> </script>
 <script src="/Data/region.js"> </script> 
+    <script src="/functions/retrieveOutputFile.js"> </script>
+    <script src="/functions/PlotChar.js"> </script>
+    <script src="/functions/PieChart.js"> </script>
 
 
 
@@ -52,12 +56,40 @@
           <li id="IWButtons" > <a  class="IWLink" href="#news">Human </a>       </li>
           <li id="IWButtons" > <a class="IWLink" href="#contact">Produced </a> </li>
         </ul>
+       
+       <ul id="UpperMenu" >
+          <li id="IWButtons" > <a  class="IWLink" href="#home" onclick="showBarChar()">Bar Char </a></li>
+          <li id="IWButtons" > <a  class="IWLink" href="#news" onclick="showPieChar()">Pie Char </a></li>
+          <li id="IWButtons" > <a class="IWLink" href="#contact" onclick="">Bubble Char </a> </li>
+        </ul>
     <div id= "main_button_container">
         <div id="main_box_content">
-           
-   
+   <div id="chart" style="display:none">        
+    <form action="" id="Form"> 
+   <span style="color:white">Lable:</span><br>
+  <input type="text" id="Lable" name="firstname" value="insert bar chart lable" style="width:380px; background:  #C0C0C0;"><br><br>
+         <span style="color:white">X Axis:</span><br>  
+        <select id="xAxis" style="width:380px; background:  #C0C0C0;">
+            <option value="District"> </option>
+                  
+        </select><br>
+         <br>  
+        <span id ="yAxisLable" style="color:white">Y Axis:</span><br>     
+        <select id="yAxis" style="width:380px;   background:  	#C0C0C0;">
+            <option value="District"> </option>
+                  
+        </select>
         
- <table class="mainTable" >
+  <br>
+    </form><br>
+    <button class ="dis" id="dis1" onclick="DisBarChart()" style="display:none"> Display</button> 
+    <button class ="dis"  id="dis2" onclick="DisPieChart()" style="display:none"> Display</button>   
+
+    <div id="barchartContainer" ></div>
+            </div>
+            
+            <!--End Najat-->
+ <table class="mainTable" id="mainTable" style="display:block" >
      <tr>
          <th colspan="3">  <p id="mainHeaderLabel">Intelligent Systems</p></th>
          
@@ -73,10 +105,10 @@
             <p id="mainButLabel" ><br>Energy Planning</p> </td>
       </tr>
       <tr>
-        <td> <button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/Mobility.png"/>   </button>
+        <td> <button  class="button" onclick="showMob()"><img class="button" id="image" src ="Images/Mobility.png"/>   </button>
             
             <p id="mainButLabel" ><br>Mobility Dynamics</p></td>
-        <td> <button  class="button" onclick="showDesal()"><img class="button" id="image" src ="Images/Urban.png"/>   </button>
+        <td> <button  class="button" onclick="showMob()"><img class="button" id="image" src ="Images/Urban.png"/>   </button>
             
             <p id="mainButLabel" ><br>Urban Development</p>
             </td>
@@ -106,6 +138,9 @@
     <!-- Map -->     
     <div id="map" class ="map"> </div>
 
+    
+   
+
 
     </div>
     
@@ -132,6 +167,30 @@
    function showDesal(){   
     document.getElementById("main_button_container").style.display='none';
     map.setView([25.2954, 50.6794],7)}
+         
+         
+ function showMob(){   
+    document.getElementById("UpperMenu").style.display='block';
+   document.getElementById("mainTable").style.display='none';
+
+    }
+
+function showBarChar(){   
+    document.getElementById("chart").style.display='block';
+    document.getElementById("dis1").style.display='block';
+    document.getElementById("main_button_container").style.display='block';
+
+    }
+         
+function showPieChar(){   
+    document.getElementById("chart").style.display='block';
+        document.getElementById("dis2").style.display='block';
+        document.getElementById("yAxis").style.display='none';
+        document.getElementById("yAxisLable").style.display='none';
+
+document.getElementById("main_button_container").style.display='block';
+
+    }
  
   var IWlayer;  
   function showIW(){
